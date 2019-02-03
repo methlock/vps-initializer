@@ -41,8 +41,9 @@ echo -e "${RE}SSH key not implemented, password authentication is still on.${NC}
 service ssh restart
 
 # custom installs
-echo -e "${YL}Installing htop${NC}"
-apt-get install -y htop
+# htop is not really necessary
+#echo -e "${YL}Installing htop${NC}"
+#apt-get install -y htop
 
 echo -e "${YL}Installing Docker and setting symlink${NC}"
 apt-get -y install docker.io && ln -sf /usr/bin/docker.io /usr/local/bin/docker
