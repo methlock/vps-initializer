@@ -14,6 +14,6 @@ $ cd vps-initializer
 ```
 And finally, run script with arguments.
 ```bash
-$ bash vps_init.sh 'new user' 'its password' 'new ssh port'
+$ bash vps_init.sh <new user> <its password> <new ssh port>
 ```
 
