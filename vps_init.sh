@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # You must be in script folder to run it like this:
-# $ bash vps_init.sh user password new_ssh_port
+# $ bash vps_init.sh <user> <password> <new_ssh_port>
 
 # checking if three arguments are passed in
 if [[ $# -ne 3 ]]
   then
-    echo "Bad number of arguments! Try: $ bash vps_init.sh 'new_user' 'password' 'new_ssh_port'"
+    echo "Bad number of arguments! Try: $ bash vps_init.sh <new_user> <password> <new_ssh_port>"
 fi
 
 # constants
