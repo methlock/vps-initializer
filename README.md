@@ -1,5 +1,5 @@
 # VPS initializer
-*Designed for Ubuntu 14 server.*
+*Designed for Ubuntu 14/16 server.*
 
 This is simple bash script which initialize VPS server with custom sudo user
 and docker.
