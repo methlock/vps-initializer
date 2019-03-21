@@ -27,10 +27,11 @@ echo -e "${YL}Creating $1 sudo user${NC}"
 adduser --disabled-password --gecos "" $1
 echo $1:$2 | chpasswd
 adduser $1 sudo
-exit
+
 # ssh config
 echo -e "${YL}Resolving SSH key${NC}"
 mkdir /home/$1/.ssh
+touch /home/$1/.ssh/authorized_keys
 read -p "Please enter your generated ssh key. It should start like ssh-rsa AAAA...: `echo $'\n> '`"  SSH_KEY
 echo $SSH_KEY >> /home/$1/.ssh/authorized_keys
 chmod -R go= /home/$1/.ssh
