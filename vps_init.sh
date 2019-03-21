@@ -28,23 +28,19 @@ echo $1:$2 | chpasswd
 adduser $1 sudo
 
 # ssh config
-echo -e "${YL}Inserting SSH key${NC}"
-echo -e "${RE}Not implemented see code for web help.${NC}"
-#https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604
-#https://tutorials.ubuntu.com/tutorial/tutorial-ssh-keygen-on-windows#3
-
+mkdir -p home/$1/.ssh  # make sure that this folder exists
+echo -e "${YL}Resolving SSH key${NC}"
+read -p "Please enter your generated ssh key. It should start like ssh-rsa AAAA...: `echo $'\n> '`"  SSH_KEY
+echo $SSH_KEY >> home/$1/.ssh/authorized_keys
+chmod -R go= home/$1/.ssh
+chown -R $1:$1 home/$1/.ssh
 echo -e "${YL}Setting ssh config${NC}"
 sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 sed -i '/^Port/s/22/'$3'/' /etc/ssh/sshd_config
-echo -e "${RE}SSH key not implemented, password authentication is still on.${NC}"
-#sed -i '/^PasswordAuthentication/s/yes/no/' /etc/ssh/sshd_config
-service ssh restart
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+systemctl restart ssh
 
 # custom installs
-# htop is not really necessary
-#echo -e "${YL}Installing htop${NC}"
-#apt-get install -y htop
-
 echo -e "${YL}Installing Docker and setting symlink${NC}"
 apt-get -y install docker.io && ln -sf /usr/bin/docker.io /usr/local/bin/docker
 
