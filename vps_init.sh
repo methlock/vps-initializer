@@ -49,4 +49,4 @@ groupadd docker  # just to be sure that docker group exists
 gpasswd -a $1 docker
 
 # final notice
-echo -e "${GR}Now you should reboot and login as $1${NC}"
+echo -e "${GR}Now you should reboot and login as $1$ with ssh key!{NC}"
