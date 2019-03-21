@@ -27,19 +27,19 @@ echo -e "${YL}Creating $1 sudo user${NC}"
 adduser --disabled-password --gecos "" $1
 echo $1:$2 | chpasswd
 adduser $1 sudo
-
+exit
 # ssh config
-mkdir -p home/$1/.ssh  # make sure that this folder exists
 echo -e "${YL}Resolving SSH key${NC}"
+mkdir /home/$1/.ssh
 read -p "Please enter your generated ssh key. It should start like ssh-rsa AAAA...: `echo $'\n> '`"  SSH_KEY
-echo $SSH_KEY >> home/$1/.ssh/authorized_keys
-chmod -R go= home/$1/.ssh
-chown -R $1:$1 home/$1/.ssh
+echo $SSH_KEY >> /home/$1/.ssh/authorized_keys
+chmod -R go= /home/$1/.ssh
+chown -R $1:$1 /home/$1/.ssh
 echo -e "${YL}Setting ssh config${NC}"
 sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 sed -i '/^Port/s/22/'$3'/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
-systemctl restart ssh
+service ssh restart
 
 # custom installs
 echo -e "${YL}Installing Docker and setting symlink${NC}"
@@ -50,4 +50,4 @@ groupadd docker  # just to be sure that docker group exists
 gpasswd -a $1 docker
 
 # final notice
-echo -e "${GR}Now you should reboot and login as $1$ with ssh key!{NC}"
+echo -e "${GR}Now you should reboot and login as $1$ with ssh key! ${NC}"
