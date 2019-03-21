@@ -6,6 +6,7 @@
 if [[ $# -ne 3 ]]
   then
     echo "Bad number of arguments! Try: $ bash vps_init.sh <new_user> <password> <new_ssh_port>"
+    exit
 fi
 
 # constants
