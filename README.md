@@ -1,10 +1,11 @@
-# vps-initializer
+# VPS initializer
 *Designed for Ubuntu 14 server.*
 
 This is simple bash script which initialize VPS server with custom sudo user and docker.
 
 Log on your VPS as root and install Git first with: 
 ```bash
+(optional) $ apt-get update
 $ apt-get install git -y
 ```
 Clone this repo with bash script and enter to it.
