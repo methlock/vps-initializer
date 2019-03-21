@@ -4,9 +4,10 @@
 This simple bash script which initialize VPS server with custom sudo user, 
 ssh connection and docker.
 
-Log on your VPS as root and install Git first with: 
+Log on your VPS as **root** and install Git first with: 
 ```bash
 (optional) $ apt-get update
+(optional) $ apt-get upgrade
 $ apt-get install git -y
 ```
 Clone this repo with bash script and enter to it.
