@@ -49,6 +49,7 @@ apt-get -y install docker.io && ln -sf /usr/bin/docker.io /usr/local/bin/docker
 echo -e "${YL}Adding $1 to docker group${NC}"
 groupadd docker  # just to be sure that docker group exists
 gpasswd -a $1 docker
+usermod -a -G docker $1
 
 # final notice
 echo -e "${GR}Now you should reboot and login as $1$ with ssh key! ${NC}"
