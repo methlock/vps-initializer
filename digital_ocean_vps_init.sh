@@ -26,7 +26,7 @@ adduser $USER sudo
 # ssh
 echo -e "${YL}Copying and setting root ssh key for new user${NC}"
 mkdir /home/$USER/.ssh
-cp .ssh/authorized_keys /home/$USER/.ssh/authorized_keys
+cp /root/.ssh/authorized_keys /home/$USER/.ssh/authorized_keys
 chmod -R go= /home/$USER/.ssh
 chown -R $USER:$USER /home/$USER/.ssh
 echo -e "${YL}Updating SSH config${NC}"
@@ -39,4 +39,4 @@ groupadd docker  # just to be sure that docker group exists
 gpasswd -a $USER docker
 usermod -a -G docker $USER
 
-echo -e "${GR}Now you should reboot and login as $USER$ with same ssh key as root! ${NC}"
+echo -e "${GR}Now you should reboot and login as $USER with same ssh key as root! ${NC}"
