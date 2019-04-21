@@ -2,6 +2,7 @@
 
 read -p "This script assumes that SSH key is already configured and you are logged as root in root home directory. True? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 read -p "Enter new username: " USER
+read -p "Enter its password: " PW
 
 # constants
 YL='\033[1;33m' # yellow
@@ -19,7 +20,7 @@ apt-get autoclean && apt-get autoremove
 # user creation
 echo -e "${YL}Creating $1 sudo user${NC}"
 adduser --disabled-password --gecos "" $USER
-echo $USER:password_to_disable | chpasswd
+echo $USER:$PW | chpasswd
 adduser $USER sudo
 
 # ssh
