@@ -34,4 +34,9 @@ sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 service ssh restart
 
+echo -e "${YL}Adding $USER to docker group${NC}"
+groupadd docker  # just to be sure that docker group exists
+gpasswd -a $USER docker
+usermod -a -G docker $USER
+
 echo -e "${GR}Now you should reboot and login as $USER$ with same ssh key as root! ${NC}"
