@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p "This script assumes that SSH key is already configured and you are logged as root in root home directory. True? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+read -p "This script assumes that SSH key is already configured, docker installed and you are logged as root in root home directory. True? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 read -p "Enter new username: " USER
 read -p "Enter its password: " PW
 
